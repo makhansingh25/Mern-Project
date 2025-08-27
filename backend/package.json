@@ -1,0 +1,28 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "makhan marar",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:local": "env-cmd -f .env nodemon ./bin/www",
+    "dev": "env-cmd -f .env nodemon ./bin/www",
+    "start:production": "env-cmd -f .env.production nodemon ./bin/www",
+    "start": "env-cmd -f .env.production node ./bin/www"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "env-cmd": "^10.1.0",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.13.0",
+    "multer": "^2.0.1",
+    "zod": "^3.24.2"
+  }
+}

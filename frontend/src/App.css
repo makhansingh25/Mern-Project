@@ -1,0 +1,247 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+.main-container {
+  max-width: 1370px;
+  margin: 0 auto;
+  position: relative;
+  display: column;
+}
+textarea {
+  resize: none;
+  box-shadow: inset -4px 5px 12px rgba(167, 197, 232, 0.683);
+  border: none;
+  border-radius: 20px;
+
+  letter-spacing: 2px;
+  outline: none;
+  border-bottom: 2px solid black;
+}
+.container {
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 10px;
+  background-color: rgb(17, 17, 17);
+}
+.container .logo {
+  font-size: 25px;
+  text-decoration: none;
+  color: white;
+}
+
+@keyframes animName {
+  0% {
+    transform: rotate(20deg);
+  }
+  50% {
+    transform: rotate(50deg);
+  }
+}
+
+ul {
+  display: flex;
+  gap: 30px;
+}
+ul li {
+  list-style: none;
+}
+ul li a {
+  text-decoration: none;
+  font-size: 16px;
+
+  color: rgb(255, 255, 255);
+}
+
+.registration-container,
+.login-container,
+.contact-container,
+.about-container {
+  display: flex;
+  justify-content: space-around;
+  height: 100vh;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 30px 0;
+}
+
+input {
+  padding: 10px;
+  box-shadow: inset -4px 5px 12px rgba(167, 197, 232, 0.683);
+  border: none;
+  border-radius: 20px;
+  letter-spacing: 2px;
+  outline: none;
+  border-bottom: 2px solid black;
+}
+button {
+  padding: 10px;
+  width: fit-content;
+}
+
+.home-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 40px;
+  height: 100vh;
+}
+.banner-content {
+  width: 50%;
+}
+.banner-content h1 {
+  font-size: 60px;
+  margin: 15px 0;
+}
+.banner-content p {
+  font-size: 18px;
+}
+
+.home-btn {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+}
+.home-btn button {
+  background-color: rgb(0, 0, 0);
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.service-container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+}
+.footer-container {
+  width: 100%;
+  background-color: rgb(27, 27, 27);
+  height: 100px;
+  text-align: center;
+  padding-top: 40px;
+
+  bottom: 0;
+  color: rgb(129, 128, 128);
+}
+.footer-container h4 {
+  cursor: pointer;
+  font-family: fangsong;
+}
+.pagenotfound {
+  background-color: rgb(189, 189, 189);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.inner-con {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+}
+button {
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: inset -4px 5px 12px rgb(152, 155, 155);
+}
+.inner-content {
+  width: 300px;
+  height: 400px;
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+.inner-content h1 {
+  font-size: 50px;
+  margin: 20px 0;
+}
+h1 {
+  padding: 20px 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+th,
+td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* AdminPage.css */
+
+/* Container Styles */
+.admin-container {
+  text-align: center;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* Navigation Bar */
+.admin-nav {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  background-color: #333;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* Navigation List */
+.admin-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  padding: 0;
+}
+
+/* List Items */
+.admin-nav li {
+  display: inline-block;
+}
+
+/* Links */
+.admin-nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.3s ease;
+}
+
+/* Active Link */
+.admin-nav a.active {
+  font-weight: bold;
+  color: #ffd700;
+}
+
+.banner-image img {
+  box-shadow: 20px 2px 3px 4px rgb(255, 255, 255);
+}

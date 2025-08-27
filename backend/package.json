@@ -7,11 +7,8 @@
   "type": "commonjs",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start:local": "env-cmd -f .env nodemon ./bin/www",
-    "dev": "env-cmd -f .env nodemon ./bin/www",
-    "start:production": "env-cmd -f .env.production nodemon ./bin/www",
-    "start": "env-cmd -f .env.production node ./bin/www"
+    "test": "echo \"Error: no test specified\" && exit 1"
+   
   },
   "dependencies": {
     "bcrypt": "^5.1.1",

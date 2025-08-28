@@ -21,7 +21,16 @@ app.use("/contact/form/", routes);
 app.use("/admin", adminRouter);
 app.use("/car", carroute);
 app.use(errorModdleware);
-
+app.get("/test", (req, res) => {
+  res.json({
+    message: "Hello from Express!",
+    userData: {
+      id: 1,
+      name: "Test User",
+      email: "test@example.com",
+    },
+  });
+});
 const port = process.env.PORT;
 
 ConnectDb().then(() => {

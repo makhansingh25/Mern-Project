@@ -27,8 +27,9 @@ export const AuthProvider = ({ children }) => {
         setUsers(null);
         return;
       }
+      const URL = import.meta.env.VITE_API_URL;
 
-      const response = await fetch(`http://localhost:3000/api/user`, {
+      const response = await fetch(`${URL}/api/user`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${currentToken}`,

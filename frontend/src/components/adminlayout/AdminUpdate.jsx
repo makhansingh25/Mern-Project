@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 
 const UpdateUser = () => {
   const navigate = useNavigate();
-  const { AuthorizationToken } = useAuth();
+  const { token } = useAuth();
   const { id } = useParams();
   const [user, setUser] = useState({
     username: "",
@@ -22,7 +22,7 @@ const UpdateUser = () => {
   };
 
   const GetSingleUser = async () => {
-    if (!AuthorizationToken) {
+    if (!token) {
       toast.error("Unauthorized access!");
       return;
     }
@@ -33,7 +33,7 @@ const UpdateUser = () => {
       const response = await fetch(`${url}/admin/getuser/${id}`, {
         method: "GET",
         headers: {
-          Authorization: AuthorizationToken,
+          Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
       });
@@ -57,7 +57,7 @@ const UpdateUser = () => {
   const UpdateAdminUser = async (e) => {
     e.preventDefault();
 
-    if (!AuthorizationToken) {
+    if (!token) {
       toast.error("Unauthorized access!");
       return;
     }
@@ -68,7 +68,7 @@ const UpdateUser = () => {
         {
           method: "PUT",
           headers: {
-            Authorization: AuthorizationToken,
+            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify(user),

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const AdminUser = () => {
   const [user, setUser] = useState([]);
-  const { AuthorizationToken } = useAuth();
+  const { token } = useAuth();
 
   const url = import.meta.env.VITE_API_URL;
 
@@ -13,20 +13,20 @@ const AdminUser = () => {
     const response = await fetch(`${url}/admin/user`, {
       method: "GET",
       headers: {
-        Authorization: AuthorizationToken,
+        Authorization: `Bearer ${token}`,
       },
     });
     const data = await response.json();
     if (response.ok) {
       setUser(data.user);
-    }
+    } 
   };
 
   const DeleteUser = async (id) => {
     const response = await fetch(`${url}/admin/user/delete/${id}`, {
       method: "DELETE",
       headers: {
-        Authorization: AuthorizationToken,
+        Authorization: `Bearer ${token}`,
       },
     });
     const data = await response.json();

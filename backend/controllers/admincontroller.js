@@ -14,7 +14,7 @@ const deleteUser = async (req, res) => {
   const id = req.params.id;
 
   await userModel.findOneAndDelete({ _id: id });
-  res.status(200).json({ message: "user is delete succesfully" });  
+  res.status(200).json({ message: "user is delete succesfully" });
 };
 
 const GetUserById = async (req, res) => {

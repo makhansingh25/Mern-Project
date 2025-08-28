@@ -23,8 +23,9 @@ export const AuthProvider = ({ children }) => {
     try {
       const currentToken = localStorage.getItem("token");
       if (!currentToken) return;
+      const url = import.meta.env.VITE_API_URL;
 
-      const response = await fetch(`http://localhost:3000/api/user`, {
+      const response = await fetch(`${url}/api/user`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${currentToken}`,

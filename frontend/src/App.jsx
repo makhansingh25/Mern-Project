@@ -19,11 +19,11 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 // Admin Components
-import AdminPage from "./components/AdminLayout/AdminPage";
-import AdminUser from "./components/adminlayout/AdminUser";
-import AdminContact from "./components/adminlayout/AdminContact";
-import UpdateUser from "./components/adminlayout/AdminUpdate";
-import { useAuth } from "./store/Auth";
+// import AdminPage from "./components/AdminLayout/AdminPage";
+// import AdminUser from "./components/adminlayout/AdminUser";
+// import AdminContact from "./components/adminlayout/AdminContact";
+// import UpdateUser from "./components/adminlayout/AdminUpdate";
+
 
 function App() {
   return (
@@ -39,11 +39,11 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
-        <Route path="/admin" element={<AdminPage />}>
+        {/* <Route path="/admin" element={<AdminPage />}>
           <Route path="users" element={<AdminUser />} />
           <Route path="contact" element={<AdminContact />} />
           <Route path="updateuser/:id" element={<UpdateUser />} />
-        </Route>
+        </Route> */}
         <Route path="*" element={<PageNotFound />} />
       </Routes>
 

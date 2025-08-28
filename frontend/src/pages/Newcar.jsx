@@ -15,7 +15,7 @@ const Newcar = () => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: token ? `Bearer ${token}` : "", // send Bearer token properly
+          Authorization: `Bearer ${token}`, // send Bearer token properly
         },
       });
 
@@ -38,8 +38,10 @@ const Newcar = () => {
   };
 
   useEffect(() => {
-    getproperty();
-  }, []);
+    if (token) {
+      getproperty();
+    }
+  }, [token]);
 
   useEffect(() => {
     const initialIndexes = {};

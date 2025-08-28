@@ -24,7 +24,6 @@ import Footer from "./components/Footer";
 // import AdminContact from "./components/adminlayout/AdminContact";
 // import UpdateUser from "./components/adminlayout/AdminUpdate";
 
-
 function App() {
   return (
     <BrowserRouter>

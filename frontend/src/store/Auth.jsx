@@ -4,17 +4,18 @@ import { createContext, useContext, useEffect, useState } from "react";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [token, setToken] = useState(localStorage.getItem("token"));
+  const [token, setToken] = useState(() => localStorage.getItem("token"));
   const [users, setUsers] = useState(null);
 
   const storeToken = (serverToken) => {
+    console.log("Storing token:", serverToken);
     setToken(serverToken);
     localStorage.setItem("token", serverToken);
   };
-  const isLoggedIn = !!token;
 
   const logoutUser = () => {
-    setToken("");
+    console.log("Logging out user and clearing token");
+    setToken(null);
     setUsers(null);
     localStorage.removeItem("token");
   };
@@ -22,10 +23,12 @@ export const AuthProvider = ({ children }) => {
   const authorizeUser = async () => {
     try {
       const currentToken = localStorage.getItem("token");
-      if (!currentToken) return;
-      const url = import.meta.env.VITE_API_URL;
+      if (!currentToken) {
+        setUsers(null);
+        return;
+      }
 
-      const response = await fetch(`${url}/api/user`, {
+      const response = await fetch(`http://localhost:3000/api/user`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${currentToken}`,
@@ -35,23 +38,40 @@ export const AuthProvider = ({ children }) => {
       if (response.ok) {
         const user = await response.json();
         setUsers(user.userData);
-      } else {
-        // Token invalid or expired — clear auth data
+      } else if (response.status === 401) {
+        // Token invalid or expired — logout
         logoutUser();
+      } else {
+        // For other errors, just clear users but keep token
+        setUsers(null);
+        console.warn("Authorize user failed with status:", response.status);
       }
     } catch (error) {
-      console.log("Frontend error:", error);
-      logoutUser();
+      console.error("Frontend error during authorization:", error);
+      // Don't logout immediately on network error, just clear users
+      setUsers(null);
     }
   };
 
+  // On mount, rehydrate token from localStorage if not set
   useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    if (storedToken && !token) {
+      setToken(storedToken);
+    }
+  }, []);
+
+  // When token changes, authorize user or clear user data
+  useEffect(() => {
+    console.log("Token changed:", token);
     if (token) {
       authorizeUser();
     } else {
       setUsers(null);
     }
   }, [token]);
+
+  const isLoggedIn = !!token;
 
   return (
     <AuthContext.Provider

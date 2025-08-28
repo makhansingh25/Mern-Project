@@ -1,33 +1,33 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import banner from "../assets/images/contact.jpg";
 import { useAuth } from "../store/Auth";
 
 const Contact = () => {
-  const [data, setdata] = useState({
+  const [data, setData] = useState({
     username: "",
     email: "",
     message: "",
   });
-  const [user, setUser] = useState(true);
+
   const { users } = useAuth();
 
-  if (user && users) {
-    setdata({
-      username: users.username,
-      email: users.email,
-      message: "",
-    });
-    setUser(false);
-  }
+  // ✅ Pre-fill user data once
+  useEffect(() => {
+    if (users) {
+      setData((prevData) => ({
+        ...prevData,
+        username: users.username || "",
+        email: users.email || "",
+      }));
+    }
+  }, [users]);
 
-  const Inputhandler = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-
-    setdata({
-      ...data,
+  const InputHandler = (e) => {
+    const { name, value } = e.target;
+    setData((prevData) => ({
+      ...prevData,
       [name]: value,
-    });
+    }));
   };
 
   const InputSubmit = async (e) => {
@@ -41,8 +41,14 @@ const Contact = () => {
       },
       body: JSON.stringify(data),
     });
+
     if (response.ok) {
-      alert("message is submit succesfully");
+      alert("Message submitted successfully");
+      setData({
+        username: users?.username || "",
+        email: users?.email || "",
+        message: "",
+      });
     }
   };
 
@@ -51,7 +57,12 @@ const Contact = () => {
       <div className="main-container">
         <div className="contact-container">
           <div className="image">
-            <img src={banner} alt="" width="500px" height="400px" />
+            <img
+              src={banner}
+              alt="Contact Banner"
+              width="500px"
+              height="400px"
+            />
           </div>
           <div className="form-container">
             <h1>Contact Form</h1>
@@ -60,32 +71,31 @@ const Contact = () => {
               <input
                 type="text"
                 name="username"
-                placeholder="enter name"
+                placeholder="Enter name"
                 value={data.username}
-                onChange={Inputhandler}
+                onChange={InputHandler}
               />
               <label>Email</label>
               <input
                 type="email"
                 name="email"
-                placeholder="enter email"
+                placeholder="Enter email"
                 value={data.email}
-                onChange={Inputhandler}
+                onChange={InputHandler}
               />
-              <label>message</label>
+              <label>Message</label>
               <textarea
-                type="text"
                 name="message"
-                placeholder="enter message"
+                placeholder="Enter message"
                 value={data.message}
-                onChange={Inputhandler}
+                onChange={InputHandler}
               />
-
               <button type="submit">Submit</button>
             </form>
           </div>
         </div>
       </div>
+
       <div className="maps">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d1714.1224124361934!2d76.5579514!3d30.7677074!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1743488745652!5m2!1sen!2sin"
